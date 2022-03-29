@@ -39,8 +39,6 @@ public class ProfilActivity extends AppCompatActivity {
     FloatingActionButton button;
     private NeighbourApiService mApiService;
     private Neighbour mNeighbour;
-    private static final String NEIGHBOUR_STATUS = "NEIGHBOUR_STATUS";
-    private static final String NEIGHBOUR_STATUS_FAVORITE = "NEIGHBOUR_STATUS_FAVORITE";
 
 
     @Override
@@ -48,7 +46,7 @@ public class ProfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
         ButterKnife.bind(this);
-        Boolean isFavorite = getSharedPreferences(NEIGHBOUR_STATUS, MODE_PRIVATE).getBoolean(NEIGHBOUR_STATUS_FAVORITE, false);
+
 
         Bundle data = getIntent().getExtras();
         mNeighbour = (Neighbour) data.getParcelable("neighbour");
@@ -82,10 +80,6 @@ public class ProfilActivity extends AppCompatActivity {
         }
         mApiService.setFavoriteNeighbour(mNeighbour);
 
-        getSharedPreferences(NEIGHBOUR_STATUS, MODE_PRIVATE)
-                .edit()
-                .putBoolean(NEIGHBOUR_STATUS_FAVORITE, mNeighbour.getIsFavorite())
-                .apply();
 
     }
 
