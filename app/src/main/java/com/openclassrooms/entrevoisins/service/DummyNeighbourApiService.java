@@ -39,18 +39,19 @@ public class DummyNeighbourApiService implements NeighbourApiService {
         neighbours.add(neighbour);
     }
 
-    @Override
+    //Change favorite state of neighbour
     public void setFavoriteNeighbour(Neighbour neighbour) {
         for (int i = 0; i < neighbours.size(); i++) {
             Neighbour currentNeighbours = neighbours.get(i);
             if (currentNeighbours.getId() == neighbour.getId()) {
                 neighbours.get(i).setIsFavorite(!currentNeighbours.getIsFavorite());
             }
-
         }
 
     }
 
+
+    //Loop to check if neighbours are favorite or not
     @Override
     public List<Neighbour> getFavoriteNeighbours() {
 

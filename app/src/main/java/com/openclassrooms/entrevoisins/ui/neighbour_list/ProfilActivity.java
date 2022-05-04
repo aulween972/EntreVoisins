@@ -46,11 +46,16 @@ public class ProfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
         ButterKnife.bind(this);
-
-
         Bundle data = getIntent().getExtras();
         mNeighbour = (Neighbour) data.getParcelable("neighbour");
-        Log.e("log", mNeighbour.getName());
+        mApiService = DI.getNeighbourApiService();
+        neighbourInfo();
+
+    }
+
+    //Update design
+    public void neighbourInfo() {
+
         name.setText(mNeighbour.getName());
         Glide.with(this)
                 .load(mNeighbour.getAvatarUrl())
@@ -60,17 +65,15 @@ public class ProfilActivity extends AppCompatActivity {
         phoneNumber.setText(mNeighbour.getPhoneNumber());
         description.setText(mNeighbour.getAboutMe());
         site.setText("www.facebook.fr/" + mNeighbour.getName());
-        mApiService = DI.getNeighbourApiService();
-        Log.e("test", mNeighbour.getIsFavorite() ? "True" : "False");
         if (mNeighbour.getIsFavorite()) {
             button.setImageResource(R.drawable.ic_star_white_24dp);
         }
 
-
     }
 
+
     @OnClick(R.id.apButton)
-    void isFavorite() {
+    void favoriteButton() {
 
         if (mNeighbour.getIsFavorite()) {
             button.setImageResource(R.drawable.ic_star_border_white_24dp);

@@ -43,6 +43,8 @@ public class Neighbour implements Parcelable {
     private boolean isFavorite;
 
 
+
+
     /**
      * Constructor
      *
@@ -61,6 +63,7 @@ public class Neighbour implements Parcelable {
         this.isFavorite = false;
     }
 
+//Information are retrieved thanks to ParcelIn
     protected Neighbour(Parcel in) {
         id = in.readLong();
         name = in.readString();
@@ -70,6 +73,8 @@ public class Neighbour implements Parcelable {
         aboutMe = in.readString();
         isFavorite = in.readInt() == 1;
     }
+
+
 
     public static final Creator<Neighbour> CREATOR = new Creator<Neighbour>() {
 
@@ -166,7 +171,7 @@ public class Neighbour implements Parcelable {
         parcel.writeString(address);
         parcel.writeString(phoneNumber);
         parcel.writeString(aboutMe);
-        parcel.writeValue(isFavorite ? 1 : 0);
+        parcel.writeInt(isFavorite ? 1 : 0);
 
 
     }
